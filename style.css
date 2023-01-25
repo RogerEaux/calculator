@@ -24,11 +24,28 @@ body{
 }
 
 #display{
-    flex-basis: 100px;
+    flex-basis: 150px;
+    flex-direction: column;
+    box-sizing: border-box;
     background-color: black;
-    border: 2px solid #00003b;
     border-radius: 10px;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
+    justify-content: flex-end;
+}
+
+.bottom,
+.top{
+    font-family: 'Seven Segment', sans-serif;
+    flex-basis: 50%;
+    text-align: end;
+    color: aquamarine;
+    font-size: 48px;
+    padding: 12px 24px;
+    box-sizing: border-box;
+}
+
+.bottom{
+    flex-basis: 50%;
 }
 
 #buttons{
@@ -91,6 +108,8 @@ body{
         flex-basis: 400px;
     }
 
+    .bottom,
+    .top,
     .container button{
         font-size: 30px;
     }
@@ -109,6 +128,8 @@ body{
         flex-basis: 300px;
     }
 
+    .bottom,
+    .top,
     .container button{
         font-size: 24px;
     }
