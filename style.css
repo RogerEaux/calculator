@@ -17,11 +17,18 @@ body{
     align-self: center;
     flex-direction: column;
     width: 400px;
-    margin: 96px 0
+    margin: 64px 0;
+    background-color: #00003b;
+    padding: 24px;
+    border-radius: 16px;
 }
 
 #display{
-    flex-basis: 100px;    
+    flex-basis: 100px;
+    background-color: black;
+    border: 2px solid #00003b;
+    border-radius: 10px;
+    margin-bottom: 16px;
 }
 
 #buttons{
@@ -35,7 +42,7 @@ body{
 
 .container button{
     flex-basis: 20%;
-    border: 2px solid #00003b;
+    border: 4px solid #00003b;
     border-radius: 10px;
     box-sizing: border-box;
     font-size: 36px;
@@ -71,7 +78,7 @@ body{
     padding: 32px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     #content{
         width: 320px;
     }
@@ -82,5 +89,27 @@ body{
     
     #buttons{
         flex-basis: 400px;
+    }
+
+    .container button{
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    #content{
+        width: 240px;
+    }
+    
+    #display{
+        flex-basis: 60px;    
+    }
+    
+    #buttons{
+        flex-basis: 300px;
+    }
+
+    .container button{
+        font-size: 24px;
     }
 }
