@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    display: flex;
+}
+
+#buttons{
+    width: 500px;
+    height: 500px;
+}
+
+#buttons .container{
+    flex-direction: column;
+}
+
+.container button{
+    flex: 1;
+}
+
+#equals{
+    flex: 2;
+}
