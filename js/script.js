@@ -3,7 +3,6 @@ substract = (a, b) => a-b;
 multiply = (a, b) => a*b;
 divide = (a, b) => a/b;
 
-
 function operate(operator, fisrtNumber, secondNumber){
     if(operator === 'add'){
         return add(fisrtNumber, secondNumber);

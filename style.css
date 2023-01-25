@@ -14,13 +14,18 @@ body{
 }
 
 #content{
-    justify-content: center;
-    margin: 96px 0;
+    align-self: center;
+    flex-direction: column;
+    width: 400px;
+    margin: 96px 0
+}
+
+#display{
+    flex-basis: 100px;    
 }
 
 #buttons{
-    width: 400px;
-    height: 500px;
+    flex-basis: 500px;
 }
 
 #buttons .container{
@@ -64,4 +69,18 @@ body{
     color: aquamarine;
     font-weight: 900;
     padding: 32px;
+}
+
+@media (max-width: 600px) {
+    #content{
+        width: 320px;
+    }
+    
+    #display{
+        flex-basis: 80px;    
+    }
+    
+    #buttons{
+        flex-basis: 400px;
+    }
 }
