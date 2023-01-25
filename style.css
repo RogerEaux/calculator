@@ -7,19 +7,51 @@
     display: flex;
 }
 
+body{
+    flex-direction: column;
+}
+
+#content{
+    justify-content: center;
+    margin: 96px 0;
+}
+
 #buttons{
-    width: 500px;
+    width: 400px;
     height: 500px;
 }
 
 #buttons .container{
     flex-direction: column;
-}
-
-.container button{
     flex: 1;
 }
 
+.container button{
+    flex-basis: 20%;
+    border: 2px solid #00003b;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 36px;
+    font-weight: 900;
+}
+
+.number{
+    background-color: aquamarine;
+    color: #00003b;
+}
+
+.operator{
+    background-color: #6fefc4;
+    color: #00003b;
+}
+
+.deleter{
+    background-color: orange;
+    color: aquamarine;
+}
+
 #equals{
-    flex: 2;
+    flex-basis: 40%;
+    background-color: skyblue;
+    color: #00003b;
 }
