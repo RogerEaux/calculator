@@ -9,6 +9,8 @@
 
 body{
     flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
 }
 
 #content{
@@ -54,4 +56,12 @@ body{
     flex-basis: 40%;
     background-color: skyblue;
     color: #00003b;
+}
+
+#footer{
+    justify-content: center;
+    background-color: #00003b;
+    color: aquamarine;
+    font-weight: 900;
+    padding: 32px;
 }
