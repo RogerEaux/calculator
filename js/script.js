@@ -15,6 +15,16 @@ function operate(operator, fisrtNumber, secondNumber){
     }
 }
 
+function allowOperators(){
+    const operators = document.querySelectorAll('.operator');
+    operators.forEach(operator => operator.addEventListener('click', operatorClick));
+}
+
+function disallowOperators(){
+    const operators = document.querySelectorAll('.operator');
+    operators.forEach(operator => operator.removeEventListener('click', operatorClick));
+}
+
 function changeBottomDisplay(button){
     const bottom = document.querySelector('.bottom');
     bottom.textContent += button.textContent;
@@ -29,19 +39,17 @@ function changeTopDisplay(button){
 
 function operatorClick(){
     changeTopDisplay(this);
-    const operators = document.querySelectorAll('.operator');
-    operators.forEach(operator => operator.removeEventListener('click', operatorClick));
+    disallowOperators();
 }
 
 function numberClick(){
+    changeBottomDisplay(this);
+    allowOperators();
     if(this.textContent === '.'){
         const decimalPoint = document.querySelector('#point');
         decimalPoint.removeEventListener('click',numberClick);
+        disallowOperators();
     }
-    changeBottomDisplay(this);
-    const operators = document.querySelectorAll('.operator');
-    const top = document.querySelector('.top');
-    operators.forEach(operator => operator.addEventListener('click', operatorClick));
 }
 
 function setUp(){
@@ -50,4 +58,3 @@ function setUp(){
 }
 
 setUp();
-console.log(operate('divide', 2, 4));
