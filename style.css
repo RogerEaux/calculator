@@ -89,6 +89,7 @@ body{
     justify-content: center;
     background-color: #00003b;
     color: aquamarine;
+    font-size: 18px;
     font-weight: 900;
     padding: 32px;
 }
