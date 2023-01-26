@@ -25,26 +25,51 @@ function disallowOperators(){
     operators.forEach(operator => operator.removeEventListener('click', operatorClick));
 }
 
+function allowEquals(){
+    const equals = document.querySelector('#equals');
+    equals.addEventListener('click', equalsClick);
+}
+
+function disallowEquals(){
+    const equals = document.querySelector('#equals');
+    equals.removeEventListener('click', equalsClick);
+}
+
 function changeBottomDisplay(button){
     const bottom = document.querySelector('.bottom');
     bottom.textContent += button.textContent;
 }
 
-function changeTopDisplay(button){
+function changeTopDisplay(){
     const top = document.querySelector('.top');
     const bottom = document.querySelector('.bottom');
-    top.textContent = bottom.textContent + button.textContent;
+    console.log(top.textContent);
+    if(!top.textContent.trim()){
+        top.textContent = bottom.textContent;
+    }else{
+        top.textContent = getOperationElements();
+    }
     bottom.textContent = '';
 }
 
 function operatorClick(){
-    changeTopDisplay(this);
+    changeBottomDisplay(this);
+    changeTopDisplay();
     disallowOperators();
+}
+
+function equalsClick(){
+    changeTopDisplay();
+    disallowEquals();
 }
 
 function numberClick(){
     changeBottomDisplay(this);
     allowOperators();
+    const top = document.querySelector('.top')
+    if(top.textContent){
+        allowEquals();
+    }
     if(this.textContent === '.'){
         const decimalPoint = document.querySelector('#point');
         decimalPoint.removeEventListener('click',numberClick);
