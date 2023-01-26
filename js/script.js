@@ -15,4 +15,15 @@ function operate(operator, fisrtNumber, secondNumber){
     }
 }
 
+function changeBottomDisplay(){
+    let displayBottom = '';
+    const numberButtons = document.querySelectorAll('.number');
+    numberButtons.forEach(numberButton => numberButton.addEventListener('click',() =>{
+        displayBottom += numberButton.textContent;
+        const bottom = document.querySelector('.bottom');
+        bottom.textContent = displayBottom;
+    }));
+}
+
+changeBottomDisplay();
 console.log(operate('divide', 2, 4));

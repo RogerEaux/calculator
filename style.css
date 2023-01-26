@@ -26,11 +26,9 @@ body{
 #display{
     flex-basis: 150px;
     flex-direction: column;
-    box-sizing: border-box;
     background-color: black;
     border-radius: 10px;
     margin-bottom: 24px;
-    justify-content: flex-end;
 }
 
 .bottom,
@@ -40,8 +38,8 @@ body{
     text-align: end;
     color: aquamarine;
     font-size: 48px;
+    font-weight: 700;
     padding: 12px 24px;
-    box-sizing: border-box;
 }
 
 .bottom{
@@ -113,6 +111,11 @@ body{
     .container button{
         font-size: 30px;
     }
+
+    .bottom,
+    .top{
+        padding: 10px 20px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -132,5 +135,10 @@ body{
     .top,
     .container button{
         font-size: 24px;
+    }
+
+    .bottom,
+    .top{
+        padding: 8px 16px;
     }
 }
