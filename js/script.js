@@ -1,10 +1,17 @@
 function adjustResult(result){
     const resultString = result.toString();
-    const index = resultString.indexOf('e');  
+    const indexE = resultString.indexOf('e');
+    const indexDot = resultString.indexOf('.');  
     if(resultString === 'Infinity'){
-        return 'No, stop that'
+        return 'No, stop that';
     }else if(resultString.length < 15){
         return resultString;
+    }else if(indexE === -1 && indexDot !== -1){
+        if(indexDot === 13){
+            return resultString.slice(0, 13);
+        }else{
+            return resultString.slice(0, 14);
+        }
     }else{
         return 'Like a lot';
     }
@@ -92,6 +99,11 @@ function allowNumbers(){
     numberButtons.forEach(numberButton => numberButton.addEventListener('click', clickNumber));
 }
 
+function disallowNumbers(){
+    const numberButtons = document.querySelectorAll('.number');
+    numberButtons.forEach(numberButton => numberButton.removeEventListener('click', clickNumber));
+}
+
 function clickEquals(){
     const top = document.querySelector('.top');
     const bottom = document.querySelector('.bottom');
@@ -103,6 +115,7 @@ function clickEquals(){
         allowAns();
     }
     bottom.textContent = ''
+    allowNumbers();
     disallowEquals();
 }
 
@@ -122,6 +135,7 @@ function clickOperator(){
         disallowAns();
     }
     allowDP();
+    allowNumbers();
     disallowEquals();
     disallowOperators();
 }
@@ -145,6 +159,12 @@ function clickDelete(){
         allowDP();
     }
     bottom.textContent = bottom.textContent.slice(0, -1);
+    if(bottom.textContent.length < 13){
+        allowDP();
+    }
+    if(bottom.textContent.length < 14){
+        allowNumbers();
+    }
 }
 
 function clickAllClear(){
@@ -152,9 +172,10 @@ function clickAllClear(){
     const bottom = document.querySelector('.bottom');
     top.textContent = '';
     bottom.textContent = '';
+    allowDP();
+    allowNumbers();
     disallowEquals();
     disallowOperators();
-    allowDP();
 }
 
 function clickNumber(){
@@ -164,6 +185,12 @@ function clickNumber(){
         top.textContent = '';
     }
     bottom.textContent += this.textContent;
+    if(bottom.textContent.length > 12){
+        disallowDP();
+    }
+    if(bottom.textContent.length > 13){
+        disallowNumbers();
+    }
     allowOperators();
     allowEquals();
     disallowAns();
@@ -176,6 +203,7 @@ function clickNumber(){
 
 function setUp(){
     allowNumbers();
+    allowDP();
     allowDeleters();
 }
 
