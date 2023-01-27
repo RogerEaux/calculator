@@ -1,3 +1,7 @@
+function adjustResult(){
+
+}
+
 function operate(){
     const elements = getOperationElements();
     const operator = elements[0];
@@ -13,6 +17,10 @@ function operate(){
     }else if(operator === '÷'){
         result = (a / b)
     }
+
+    adjustResult(result);
+
+    console.log(result);
     return result;
 }
 
