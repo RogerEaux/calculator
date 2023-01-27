@@ -115,6 +115,9 @@ function clickEquals(){
         allowAns();
     }
     bottom.textContent = ''
+    if(top.textContent === 'Like a lot' || top.textContent === 'No, stop that'){
+        disallowAns();
+    }
     allowNumbers();
     disallowEquals();
 }
@@ -129,10 +132,10 @@ function clickOperator(){
         top.textContent = bottom.textContent;
     }
     bottom.textContent = '';
-    if(top.textContent !== 'Like a lot' && top.textContent !== 'No, stop that'){
-        top.textContent += this.textContent;
-    }else{
+    if(top.textContent === 'Like a lot' || top.textContent === 'No, stop that'){
         disallowAns();
+    }else{
+        top.textContent += this.textContent;
     }
     allowDP();
     allowNumbers();
@@ -201,8 +204,7 @@ function clickNumber(){
 function allowKeyboardInput(){
     document.addEventListener('keydown', (event)=>{
         let key = event.key;
-        console.log(event.key);
-        
+
         const numbers = document.querySelectorAll('.number');
         numbers.forEach(number => {
             if(number.textContent === key) number.click();
@@ -214,7 +216,7 @@ function allowKeyboardInput(){
         if(key === 'Backspace') del.click();
 
         const ans = document.querySelector('#ans');
-        if(ans.textContent === key) ans.click();
+        if(key === 'a') ans.click();
 
         const decimalPoint = document.querySelector('#point');
         if(decimalPoint.textContent === key) decimalPoint.click();
@@ -223,6 +225,11 @@ function allowKeyboardInput(){
         operators.forEach(operator => {
             if(operator.textContent === key) operator.click();
         });
+
+        const multiply = document.querySelector('#multiply');
+        const divide = document.querySelector('#divide');
+        if(key === '*') multiply.click();
+        if(key === '/') divide.click();
 
         const equals = document.querySelector('#equals');
         if(equals.textContent === key || key === 'Enter') equals.click();
