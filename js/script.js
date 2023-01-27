@@ -1,5 +1,13 @@
-function adjustResult(){
-
+function adjustResult(result){
+    const resultString = result.toString();
+    const index = resultString.indexOf('e');  
+    if(resultString === 'Infinity'){
+        return 'No, stop that'
+    }else if(resultString.length < 15){
+        return resultString;
+    }else{
+        return 'Like a lot';
+    }
 }
 
 function operate(){
@@ -17,10 +25,8 @@ function operate(){
     }else if(operator === '÷'){
         result = (a / b)
     }
+    result = adjustResult(result);        
 
-    adjustResult(result);
-
-    console.log(result);
     return result;
 }
 
@@ -110,7 +116,11 @@ function clickOperator(){
         top.textContent = bottom.textContent;
     }
     bottom.textContent = '';
-    top.textContent += this.textContent;
+    if(top.textContent !== 'Like a lot' && top.textContent !== 'No, stop that'){
+        top.textContent += this.textContent;
+    }else{
+        disallowAns();
+    }
     allowDP();
     disallowEquals();
     disallowOperators();
@@ -131,6 +141,9 @@ function clickAns(){
 
 function clickDelete(){
     const bottom = document.querySelector('.bottom');
+    if(bottom.textContent.slice(-1) === '.'){
+        allowDP();
+    }
     bottom.textContent = bottom.textContent.slice(0, -1);
 }
 
@@ -145,7 +158,11 @@ function clickAllClear(){
 }
 
 function clickNumber(){
+    const top = document.querySelector('.top');
     const bottom = document.querySelector('.bottom');
+    if(top.textContent === 'Like a lot' || top.textContent === 'No, stop that'){
+        top.textContent = '';
+    }
     bottom.textContent += this.textContent;
     allowOperators();
     allowEquals();
