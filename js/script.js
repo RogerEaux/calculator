@@ -5,13 +5,13 @@ function operate(){
     const b = elements[2];
     let result;
     if(operator === '+'){
-        result = Math.floor((a + b)*100)/100;
+        result = (a + b);
     }else if(operator === '-'){
-        result = Math.floor((a - b)*100)/100;
+        result = (a - b);
     }else if(operator === 'x'){
-        result = Math.floor((a * b)*100)/100;
+        result = (a * b);
     }else if(operator === '÷'){
-        result = Math.floor((a / b)*100)/100
+        result = (a / b)
     }
     return result;
 }
@@ -56,6 +56,16 @@ function disallowDP(){
     decimalPoint.removeEventListener('click', clickNumber);
 }
 
+function allowAns(){
+    const ans = document.querySelector('#ans');
+    ans.addEventListener('click',clickAns);
+}
+
+function disallowAns(){
+    const ans = document.querySelector('#ans');
+    ans.removeEventListener('click',clickAns);
+}
+
 function allowDeleters(){
     const allClear = document.querySelector('#clear');
     const del = document.querySelector('#delete');
@@ -73,11 +83,10 @@ function clickEquals(){
     const bottom = document.querySelector('.bottom');
     if(isNaN(top.textContent.slice(-1))){
         top.textContent = operate();
-        if(isNaN(top.textContent.slice(-3, -2))){
-            console.log('E!');
-        }
+        allowAns();
     }else{
         top.textContent = bottom.textContent;
+        allowAns();
     }
     bottom.textContent = ''
     disallowEquals();
@@ -88,6 +97,7 @@ function clickOperator(){
     const bottom = document.querySelector('.bottom');
     if(isNaN(top.textContent.slice(-1))){
         top.textContent = operate();
+        allowAns();
     }else if(bottom.textContent){
         top.textContent = bottom.textContent;
     }
@@ -96,6 +106,19 @@ function clickOperator(){
     allowDP();
     disallowEquals();
     disallowOperators();
+}
+
+function clickAns(){
+    const top = document.querySelector('.top');
+    const bottom = document.querySelector('.bottom');
+    if(isNaN(top.textContent.slice(-1))){
+        bottom.textContent = top.textContent.slice(0, -1);
+    }else{
+        bottom.textContent = top.textContent;
+    }
+    allowOperators();
+    allowEquals();
+    disallowAns();
 }
 
 function clickDelete(){
@@ -118,6 +141,7 @@ function clickNumber(){
     bottom.textContent += this.textContent;
     allowOperators();
     allowEquals();
+    disallowAns();
     if(this.textContent === '.'){
         disallowDP();
         disallowOperators();
