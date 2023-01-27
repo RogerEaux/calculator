@@ -1,7 +1,7 @@
 function adjustResult(result){
-    const resultString = result.toString();
-    const indexE = resultString.indexOf('e');
-    const indexDot = resultString.indexOf('.');  
+    let resultString = result.toString();
+    let indexE = resultString.indexOf('e');
+    let indexDot = resultString.indexOf('.');  
     if(resultString === 'Infinity'){
         return 'No, stop that';
     }else if(resultString.length < 15){
@@ -18,10 +18,10 @@ function adjustResult(result){
 }
 
 function operate(){
-    const elements = getOperationElements();
-    const operator = elements[0];
-    const a = elements[1];
-    const b = elements[2];
+    let elements = getOperationElements();
+    let operator = elements[0];
+    let a = elements[1];
+    let b = elements[2];
     let result;
     if(operator === '+'){
         result = (a + b);
@@ -40,9 +40,9 @@ function operate(){
 function getOperationElements(){
     const top = document.querySelector('.top');
     const bottom = document.querySelector('.bottom');
-    const operator = top.textContent.slice(-1);
-    const a = parseFloat(top.textContent.slice(0, -1));
-    const b = parseFloat(bottom.textContent);
+    let operator = top.textContent.slice(-1);
+    let a = parseFloat(top.textContent.slice(0, -1));
+    let b = parseFloat(bottom.textContent);
 
     return [operator, a, b];
 }
@@ -50,6 +50,7 @@ function getOperationElements(){
 function allowEquals(){
     const equals = document.querySelector('#equals');
     equals.addEventListener('click', clickEquals);
+    equals.addEventListener('keypress', clickEquals);
 }
 
 function disallowEquals(){
@@ -201,10 +202,22 @@ function clickNumber(){
     }
 }
 
+function allowKeyboardInput(){
+    document.addEventListener('keydown', (event)=>{
+
+        console.log(event);
+        console.log(event.key);
+        let keyCode = event.key;
+   
+          
+      });
+}
+
 function setUp(){
     allowNumbers();
     allowDP();
     allowDeleters();
+    allowKeyboardInput();
 }
 
 setUp();
