@@ -6,14 +6,14 @@ function adjustResult(result){
         return 'No, stop that';
     }else if(resultString.length < 15){
         return resultString;
-    }else if(indexE === -1 && indexDot !== -1){
+    }else if(indexE === -1){
         if(indexDot === 13){
             return resultString.slice(0, 13);
         }else{
             return resultString.slice(0, 14);
         }
     }else{
-        return 'Like a lot';
+        return 'Too long';
     }
 }
 
@@ -115,7 +115,7 @@ function clickEquals(){
         allowAns();
     }
     bottom.textContent = ''
-    if(top.textContent === 'Like a lot' || top.textContent === 'No, stop that'){
+    if(top.textContent === 'Too long' || top.textContent === 'No, stop that'){
         disallowAns();
     }
     allowDP();
@@ -133,7 +133,7 @@ function clickOperator(){
         top.textContent = bottom.textContent;
     }
     bottom.textContent = '';
-    if(top.textContent === 'Like a lot' || top.textContent === 'No, stop that'){
+    if(top.textContent === 'Too long' || top.textContent === 'No, stop that'){
         disallowAns();
     }else{
         top.textContent += this.textContent;
@@ -182,7 +182,7 @@ function clickAllClear(){
 function clickNumber(){
     const top = document.querySelector('.top');
     const bottom = document.querySelector('.bottom');
-    if(top.textContent === 'Like a lot' || top.textContent === 'No, stop that'){
+    if(top.textContent === 'Too long' || top.textContent === 'No, stop that'){
         top.textContent = '';
     }
     bottom.textContent += this.textContent;
