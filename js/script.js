@@ -6,7 +6,7 @@ function adjustResult(result){
         return 'No, stop that';
     }else if(resultString.length < 15){
         return resultString;
-    }else if(indexE === -1){
+    }else if(indexE === -1 && indexDot !== -1){
         if(indexDot === 13){
             return resultString.slice(0, 13);
         }else{
