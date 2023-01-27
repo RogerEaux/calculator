@@ -118,6 +118,7 @@ function clickEquals(){
     if(top.textContent === 'Like a lot' || top.textContent === 'No, stop that'){
         disallowAns();
     }
+    allowDP();
     allowNumbers();
     disallowEquals();
 }
