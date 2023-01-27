@@ -204,36 +204,30 @@ function clickNumber(){
 function allowKeyboardInput(){
     document.addEventListener('keydown', (event)=>{
         let key = event.key;
-
-        const numbers = document.querySelectorAll('.number');
+        const numbers = document.querySelectorAll('.number');        
+        const equals = document.querySelector('#equals');
+        const del = document.querySelector('#delete');
+        const allClear = document.querySelector('#clear');
+        const ans = document.querySelector('#ans');
+        const decimalPoint = document.querySelector('#point');
+        const operators = document.querySelectorAll('.operator');
+        const multiply = document.querySelector('#multiply');
+        const divide = document.querySelector('#divide');
+        
         numbers.forEach(number => {
             if(number.textContent === key) number.click();
         });
-
-        const allClear = document.querySelector('#clear');
-        const del = document.querySelector('#delete');
-        if(key === 'Escape') allClear.click();
-        if(key === 'Backspace') del.click();
-
-        const ans = document.querySelector('#ans');
-        if(key === 'a') ans.click();
-
-        const decimalPoint = document.querySelector('#point');
-        if(decimalPoint.textContent === key) decimalPoint.click();
-
-        const operators = document.querySelectorAll('.operator');
         operators.forEach(operator => {
             if(operator.textContent === key) operator.click();
         });
 
-        const multiply = document.querySelector('#multiply');
-        const divide = document.querySelector('#divide');
+        if(key === '=' || key === 'Enter') equals.click();
+        if(key === 'Escape') allClear.click();
+        if(key === 'Backspace') del.click();
+        if(key === 'a') ans.click();
+        if(key === '.') decimalPoint.click();
         if(key === '*') multiply.click();
         if(key === '/') divide.click();
-
-        const equals = document.querySelector('#equals');
-        if(equals.textContent === key || key === 'Enter') equals.click();
-
       });
 }
 
