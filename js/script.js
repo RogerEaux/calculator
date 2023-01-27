@@ -24,6 +24,16 @@ function getOperationElements(){
     return [operator, a, b];
 }
 
+function allowDP(){
+    const decimalPoint = document.querySelector('#point');
+    decimalPoint.addEventListener('click', numberClick);
+}
+
+function disallowDP(){
+    const decimalPoint = document.querySelector('#point');
+    decimalPoint.removeEventListener('click', numberClick);
+}
+
 function allowOperators(){
     const operators = document.querySelectorAll('.operator');
     operators.forEach(operator => operator.addEventListener('click', operatorClick));
@@ -44,18 +54,15 @@ function disallowEquals(){
     equals.removeEventListener('click', equalsClick);
 }
 
-function addToTopDisplay(button){
-    const top = document.querySelector('.top');
-    top.textContent += button.textContent;
-}
-
-function addToBottomDisplay(button){
-    const bottom = document.querySelector('.bottom');
-    bottom.textContent += button.textContent;
-}
-
 function equalsClick(){
-
+    const top = document.querySelector('.top');
+    const bottom = document.querySelector('.bottom');
+    if(isNaN(top.textContent.slice(-1))){
+        top.textContent = operate();
+    }else{
+        top.textContent = bottom.textContent;
+    }
+    bottom.textContent = ''
     disallowEquals();
 }
 
@@ -68,20 +75,19 @@ function operatorClick(){
         top.textContent = bottom.textContent;
     }
     bottom.textContent = '';
-    addToTopDisplay(this);
+    top.textContent += this.textContent;
+    allowDP();
+    disallowEquals();
     disallowOperators();
 }
 
 function numberClick(){
-    addToBottomDisplay(this);
+    const bottom = document.querySelector('.bottom');
+    bottom.textContent += this.textContent;
     allowOperators();
-    const top = document.querySelector('.top');
-    if(isNaN(top.textContent.slice(-1))){
-        allowEquals();
-    }
+    allowEquals();
     if(this.textContent === '.'){
-        const decimalPoint = document.querySelector('#point');
-        decimalPoint.removeEventListener('click',numberClick);
+        disallowDP();
         disallowOperators();
         disallowEquals();
     }
