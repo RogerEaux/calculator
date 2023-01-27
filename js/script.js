@@ -50,7 +50,6 @@ function getOperationElements(){
 function allowEquals(){
     const equals = document.querySelector('#equals');
     equals.addEventListener('click', clickEquals);
-    equals.addEventListener('keypress', clickEquals);
 }
 
 function disallowEquals(){
@@ -96,13 +95,13 @@ function allowDeleters(){
 }
 
 function allowNumbers(){
-    const numberButtons = document.querySelectorAll('.number');
-    numberButtons.forEach(numberButton => numberButton.addEventListener('click', clickNumber));
+    const numbers = document.querySelectorAll('.number');
+    numbers.forEach(number => number.addEventListener('click', clickNumber));
 }
 
 function disallowNumbers(){
-    const numberButtons = document.querySelectorAll('.number');
-    numberButtons.forEach(numberButton => numberButton.removeEventListener('click', clickNumber));
+    const numbers = document.querySelectorAll('.number');
+    numbers.forEach(number => number.removeEventListener('click', clickNumber));
 }
 
 function clickEquals(){
@@ -160,9 +159,6 @@ function clickDelete(){
         allowDP();
     }
     bottom.textContent = bottom.textContent.slice(0, -1);
-    if(bottom.textContent.length < 13){
-        allowDP();
-    }
     if(bottom.textContent.length < 14){
         allowNumbers();
     }
@@ -204,12 +200,33 @@ function clickNumber(){
 
 function allowKeyboardInput(){
     document.addEventListener('keydown', (event)=>{
-
-        console.log(event);
+        let key = event.key;
         console.log(event.key);
-        let keyCode = event.key;
-   
-          
+        
+        const numbers = document.querySelectorAll('.number');
+        numbers.forEach(number => {
+            if(number.textContent === key) number.click();
+        });
+
+        const allClear = document.querySelector('#clear');
+        const del = document.querySelector('#delete');
+        if(key === 'Escape') allClear.click();
+        if(key === 'Backspace') del.click();
+
+        const ans = document.querySelector('#ans');
+        if(ans.textContent === key) ans.click();
+
+        const decimalPoint = document.querySelector('#point');
+        if(decimalPoint.textContent === key) decimalPoint.click();
+
+        const operators = document.querySelectorAll('.operator');
+        operators.forEach(operator => {
+            if(operator.textContent === key) operator.click();
+        });
+
+        const equals = document.querySelector('#equals');
+        if(equals.textContent === key || key === 'Enter') equals.click();
+
       });
 }
 
